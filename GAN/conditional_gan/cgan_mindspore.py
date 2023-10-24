@@ -101,9 +101,9 @@ for it in tqdm(range(100000)):
         data_loader = train_dataset.create_tuple_iterator()
         continue
     X = X.flatten().view(X.shape[0], -1)
-    z = Parameter(mindspore.ops.randn(X.shape[0], Z_dim))
+    z = Parameter(mindspore.ops.randn(X.shape[0], Z_dim), requires_grad=False)
     X = Parameter(X, requires_grad=False)
-    c = Parameter(c.astype('float32'))
+    c = Parameter(c.astype('float32'), requires_grad=False)
 
     # Dicriminator forward-loss-backward-update
     G_sample = G(z, c)
